@@ -1,12 +1,16 @@
 import React from 'react'
-import { Text } from 'react-native'
 import PageContainer from '../../components/PageContainer'
 import Button from '../../components/Button'
+import { HomeScreenProps } from './types'
 
-const HomeScreen = () => {
+const HomeScreen = (props: HomeScreenProps) => {
+  const {
+    navigation,
+  } = props;
+
   return (
     <PageContainer
-      className="justify-around p-12"
+      className="flex-col justify-evenly"
     >
       <Button
         className="py-8"
@@ -23,6 +27,7 @@ const HomeScreen = () => {
       <Button
         className="py-8"
         textClassName="text-6xl"
+        onPress={() => navigation.navigate("ProductsHome")}
       >
         Ver productos
       </Button>
