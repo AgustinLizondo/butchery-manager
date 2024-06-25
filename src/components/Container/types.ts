@@ -1,3 +1,3 @@
-import { ViewProps } from "react-native";
+import { TouchableOpacityProps } from "react-native";
 
-export interface IContainerProps extends ViewProps {}
+export interface IContainerProps extends TouchableOpacityProps {}

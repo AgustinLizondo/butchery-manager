@@ -1,52 +1,80 @@
+export interface Product {
+  id: number;
+  created_at: string;
+  created_by: string;
+  product_name: string;
+  product_price: number;
+}
+
 export const ProductsMock = [
   {
-    "id": 0,
-    "name": "Vacío",
-    "price": 3000
+    id: 0,
+    created_at: "2024-06-25T00:00:00Z",
+    created_by: "admin",
+    product_name: "Vacío",
+    product_price: 3000,
   },
   {
-    "id": 1,
-    "name": "Lomo de res",
-    "price": 4000
+    id: 1,
+    created_at: "2024-06-25T00:00:00Z",
+    created_by: "admin",
+    product_name: "Lomo de res",
+    product_price: 4000,
   },
   {
-    "id": 2,
-    "name": "Costilla de res",
-    "price": 2500
+    id: 2,
+    created_at: "2024-06-25T00:00:00Z",
+    created_by: "admin",
+    product_name: "Costilla de res",
+    product_price: 2500,
   },
   {
-    "id": 3,
-    "name": "Bistec de res",
-    "price": 3000
+    id: 3,
+    created_at: "2024-06-25T00:00:00Z",
+    created_by: "admin",
+    product_name: "Bistec de res",
+    product_price: 3000,
   },
   {
-    "id": 4,
-    "name": "Entrecot",
-    "price": 3500
+    id: 4,
+    created_at: "2024-06-25T00:00:00Z",
+    created_by: "admin",
+    product_name: "Entrecot",
+    product_price: 3500,
   },
   {
-    "id": 5,
-    "name": "Filete de res",
-    "price": 3800
+    id: 5,
+    created_at: "2024-06-25T00:00:00Z",
+    created_by: "admin",
+    product_name: "Filete de res",
+    product_price: 3800,
   },
   {
-    "id": 6,
-    "name": "Falda de res",
-    "price": 2000
+    id: 6,
+    created_at: "2024-06-25T00:00:00Z",
+    created_by: "admin",
+    product_name: "Falda de res",
+    product_price: 2000,
   },
   {
-    "id": 7,
-    "name": "Solomillo de res",
-    "price": 4500
+    id: 7,
+    created_at: "2024-06-25T00:00:00Z",
+    created_by: "admin",
+    product_name: "Solomillo de res",
+    product_price: 4500,
   },
   {
-    "id": 8,
-    "name": "Colita de cuadril",
-    "price": 3200
+    id: 8,
+    created_at: "2024-06-25T00:00:00Z",
+    created_by: "admin",
+    product_name: "Colita de cuadril",
+    product_price: 3200,
   },
   {
-    "id": 9,
-    "name": "Asado de tira",
-    "price": 2800
+    id: 9,
+    created_at: "2024-06-25T00:00:00Z",
+    created_by: "admin",
+    product_name: "Asado de tira",
+    product_price: 2800,
   },
 ];
