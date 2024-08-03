@@ -4,6 +4,7 @@ export interface Product {
   created_by: string;
   product_name: string;
   product_price: number;
+  weight: number;
 }
 
 export const ProductsMock = [

@@ -1,8 +1,8 @@
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { PageContainerProps } from './types'
-import { twMerge } from 'tailwind-merge';
-import { ScrollView } from 'react-native';
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { PageContainerProps } from "./types";
+import { twMerge } from "tailwind-merge";
+import { ScrollView } from "react-native";
 
 const PageContainer = (props: PageContainerProps) => {
   const {
@@ -22,14 +22,11 @@ const PageContainer = (props: PageContainerProps) => {
       horizontal={horizontal}
       scrollEnabled={scrollEnabled}
     >
-      <SafeAreaView
-        className={twMerge("flex flex-1", className)}
-        {...rest}
-      >
+      <SafeAreaView className={twMerge("flex flex-1", className)} {...rest}>
         {children}
       </SafeAreaView>
     </ScrollView>
-  )
-}
+  );
+};
 
-export default PageContainer
+export default PageContainer;
