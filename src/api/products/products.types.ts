@@ -1,4 +1,4 @@
 export interface IGetProductsParams {
-  successCallback?: (data: any) => void;
-  errorCallback?: (error: any) => void;
+  successCallback?: (data: unknown) => void;
+  errorCallback?: (error: unknown) => void;
 }
