@@ -17,12 +17,14 @@ const PageContainer = (props: PageContainerProps) => {
     <ScrollView
       contentContainerStyle={{
         flexGrow: 1,
-        padding: 24,
       }}
       horizontal={horizontal}
       scrollEnabled={scrollEnabled}
     >
-      <SafeAreaView className={twMerge("flex flex-1", className)} {...rest}>
+      <SafeAreaView
+        className={twMerge("flex flex-1 h-screen min-w-screen p-6", className)}
+        {...rest}
+      >
         {children}
       </SafeAreaView>
     </ScrollView>

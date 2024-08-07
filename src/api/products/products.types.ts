@@ -1,4 +1,8 @@
-export interface IGetProductsParams {
-  successCallback?: (data: unknown) => void;
-  errorCallback?: (error: unknown) => void;
+import { Product } from "../../utils/ProductsMock";
+import { ICallbacksApi } from "../types";
+
+export interface IGetProductsParams extends ICallbacksApi {}
+
+export interface ICreateProduct extends ICallbacksApi {
+  product: Pick<Product, "productName" | "productPrice">;
 }

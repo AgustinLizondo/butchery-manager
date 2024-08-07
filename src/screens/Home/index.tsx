@@ -8,8 +8,12 @@ const HomeScreen = (props: HomeScreenProps) => {
 
   return (
     <PageContainer className="flex-col justify-evenly space-y-4">
-      <Button className="py-8" textClassName="text-6xl">
-        Ver pedidos
+      <Button
+        className="py-8"
+        textClassName="text-6xl"
+        onPress={() => navigation.navigate("Orders")}
+      >
+        Ver órdenes
       </Button>
       <Button
         className="py-8"
@@ -17,6 +21,13 @@ const HomeScreen = (props: HomeScreenProps) => {
         onPress={() => navigation.navigate("ProductsHome")}
       >
         Nuevo pedido
+      </Button>
+      <Button
+        className="py-8"
+        textClassName="text-6xl"
+        onPress={() => navigation.navigate("Cart")}
+      >
+        Ver carrito
       </Button>
     </PageContainer>
   );

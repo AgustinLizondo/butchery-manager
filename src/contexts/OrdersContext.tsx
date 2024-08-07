@@ -2,14 +2,16 @@ import React from "react";
 import { createContext, ReactNode, useContext, useState } from "react";
 import { Product } from "../utils/ProductsMock";
 
-type Order = {
+export type Order = {
+  id: number;
   products: Product[];
 };
 
 type OrdersContextType = {
   orders: Order[];
-  addOrder: (order: Order) => void;
+  addOrders: (order: Order[]) => void;
   removeOrder: (order: Order) => void;
+  setOrders: (orders: Order[]) => void;
 };
 
 export const OrdersContext = createContext<OrdersContextType>(
@@ -19,8 +21,8 @@ export const OrdersContext = createContext<OrdersContextType>(
 export const OrdersProvider = ({ children }: { children: ReactNode }) => {
   const [orders, setOrders] = useState<Order[]>([]);
 
-  const addOrder = (order: Order) => {
-    setOrders([...orders, order]);
+  const addOrders = (orders: Order[]) => {
+    setOrders([...orders, ...orders]);
   };
 
   const removeOrder = (order: Order) => {
@@ -32,8 +34,9 @@ export const OrdersProvider = ({ children }: { children: ReactNode }) => {
     <OrdersContext.Provider
       value={{
         orders,
-        addOrder,
+        addOrders,
         removeOrder,
+        setOrders,
       }}
     >
       {children}

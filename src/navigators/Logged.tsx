@@ -5,6 +5,7 @@ import ProductsHomeScreen from "../screens/ProductsHome";
 import Cart from "../screens/Cart";
 import { LoggedStackParamList } from "./logged.types";
 import ContextProvider from "../contexts";
+import Orders from "../screens/Orders";
 
 const LoggedNavigator = () => {
   const Stack = createNativeStackNavigator<LoggedStackParamList>();
@@ -19,6 +20,7 @@ const LoggedNavigator = () => {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ProductsHome" component={ProductsHomeScreen} />
         <Stack.Screen name="Cart" component={Cart} />
+        <Stack.Screen name="Orders" component={Orders} />
       </Stack.Navigator>
     </ContextProvider>
   );
