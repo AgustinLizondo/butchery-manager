@@ -72,10 +72,10 @@ const Orders = ({ navigation }: OrdersScreenProps) => {
           </View>
         </View>
       </Modal>
-      <PageContainer className="flex flex-1">
-        <View className="flex flex-1 gap-4">
-          <View className="flex flex-row justify-between pb-4 border-b">
-            <View className="flex flex-row gap-4 items-center">
+      <PageContainer>
+        <View className="flex flex-1 space-y-4">
+          <View className="flex flex-row items-center justify-between pb-4 border-b">
+            <View className="flex flex-row space-x-4 items-center">
               <TouchableOpacity onPress={onBackPress}>
                 <Feather name="arrow-left" size={24} color="black" />
               </TouchableOpacity>
@@ -86,7 +86,7 @@ const Orders = ({ navigation }: OrdersScreenProps) => {
             </Text>
           </View>
           {orders.length === 0 ? (
-            <View className="flex flex-1 justify-center items-center">
+            <View className="flex flex-1 justify-center items-center max-w-sm self-center">
               <Text className="font-semibold text-xl text-gray-600">
                 No tienes órdenes para mostrar, las órdenes que crees se
                 mostrarán aquí.
@@ -99,47 +99,38 @@ const Orders = ({ navigation }: OrdersScreenProps) => {
             </View>
           ) : (
             orders.map((order: Order) => (
-              <View
+              <TouchableOpacity
                 key={order.id}
-                className="flex flex-col p-4 rounded-xl bg-gray-200"
+                onPress={() => {
+                  setSelectedOrder(order);
+                  onDeleteOrder();
+                }}
+                className="flex flex-row items-center justify-between p-4 bg-gray-200 rounded-lg"
               >
-                <View className="flex flex-row items-center justify-between">
-                  <View className="flex flex-col gap-2">
-                    <Text className="font-semibold text-xl text-gray-600">
-                      #{order.id}
-                    </Text>
-                    <Text className="text-gray-600">
-                      {order.products
-                        .slice(0, 3)
-                        .map((product) => product.productName)
-                        .join(", ")}
-                      .{order.products.length > 3 && ".."}
-                    </Text>
-                  </View>
-                  <View className="flex flex-row gap-4 items-center">
-                    <Text className="font-semibold text-xl">
-                      Total:{" "}
-                      {CurrencyFormatter.format(
-                        order.products.reduce(
-                          (acc, product) =>
-                            acc +
-                            product.productPrice * (product.weight / 1000),
-                          0
-                        )
-                      )}
-                    </Text>
-                    <TouchableOpacity
-                      onPress={() => {
-                        setSelectedOrder(order);
-                        onDeleteOrder();
-                      }}
-                      className="w-12 h-12 active:opacity-50 rounded-full bg-gray-300 items-center justify-center"
-                    >
-                      <Feather name="trash-2" size={24} color="red" />
-                    </TouchableOpacity>
-                  </View>
+                <View className="flex flex-col space-y-2 w-1/3">
+                  <Text className="font-semibold text-xl text-gray-600">
+                    #{order.id}
+                  </Text>
+                  <Text className="text-gray-600">
+                    {order.products
+                      .slice(0, 3)
+                      .map((product) => product.productName)
+                      .join(", ")}
+                    .{order.products.length > 3 && ".."}
+                  </Text>
                 </View>
-              </View>
+                <View className="flex flex-row space-x-4 items-center">
+                  <Text className="font-semibold text-lg">
+                    {CurrencyFormatter.format(
+                      order.products.reduce(
+                        (acc, product) =>
+                          acc + product.productPrice * (product.weight / 1000),
+                        0
+                      )
+                    )}
+                  </Text>
+                </View>
+              </TouchableOpacity>
             ))
           )}
         </View>

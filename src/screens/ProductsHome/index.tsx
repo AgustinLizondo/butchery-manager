@@ -209,60 +209,62 @@ const ProductsHomeScreen = ({ navigation }: ProductsHomeScreenProps) => {
           </View>
         </View>
       </Modal>
-      <PageContainer scrollEnabled>
-        <View className="flex flex-row pb-4 border-b items-center mb-4">
-          <TouchableOpacity onPress={onBackPress}>
-            <Feather name="arrow-left" size={24} color="black" />
-          </TouchableOpacity>
-          <Text className="font-bold text-xl ml-4">Productos</Text>
-        </View>
-        {products.length === 0 ? (
-          <View className="flex flex-1 justify-center items-center">
-            <Text className="font-semibold text-xl text-gray-600">
-              No tienes productos para mostrar, los productos que crees se
-              mostrarán aquí.
-            </Text>
-            <TouchableOpacity onPress={onAddProductButtonPress}>
-              <Text className="text-blue-500 font-semibold text-lg">
-                Agregar un producto
-              </Text>
+      <PageContainer scrollEnabled={products.length > 0}>
+        <View className="flex flex-1 space-y-4">
+          <View className="flex flex-row space-x-4 items-center border-b pb-4">
+            <TouchableOpacity onPress={onBackPress}>
+              <Feather name="arrow-left" size={24} color="black" />
             </TouchableOpacity>
+            <Text className="font-bold text-xl ml-4">Productos</Text>
           </View>
-        ) : (
-          <View className="flex flex-1 flex-wrap gap-4">
-            {products.map((product: ProductWithoutWeight) => {
-              const onProductItemPress = () => {
-                setSelectedProduct(product);
-                setIsModalVisible(true);
-              };
-
-              return (
-                <Button
-                  key={product.id}
-                  onPress={onProductItemPress}
-                  className="flex h-64 w-80 bg-neutral-800 rounded-xl shadow-lg p-8"
-                >
-                  <View className="flex flex-1 flex-col space-y-4 justify-center">
-                    <Text className="text-white font-bold text-2xl">
-                      {product.productName}
-                    </Text>
-                    <Text className="text-white font-bold text-2xl">
-                      {CurrencyFormatter.format(product.productPrice)}
-                    </Text>
-                  </View>
-                </Button>
-              );
-            })}
-            <Button
-              className="flex h-64 w-80 bg-gray-100 border border-dashed rounded-xl shadow-lg items-center justify-center"
-              onPress={onAddProductButtonPress}
-            >
-              <Text className="text-gray-600 font-bold text-2xl">
-                Agregar un producto
+          {products.length === 0 ? (
+            <View className="flex flex-1 justify-center items-center max-w-sm self-center">
+              <Text className="font-semibold text-xl text-center text-gray-600">
+                No tienes productos para mostrar, los productos que crees se
+                mostrarán aquí.
               </Text>
-            </Button>
-          </View>
-        )}
+              <TouchableOpacity onPress={onAddProductButtonPress}>
+                <Text className="text-blue-500 font-semibold text-lg">
+                  Agregar un producto
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View className="flex flex-1 flex-wrap gap-4">
+              {products.map((product: ProductWithoutWeight) => {
+                const onProductItemPress = () => {
+                  setSelectedProduct(product);
+                  setIsModalVisible(true);
+                };
+
+                return (
+                  <Button
+                    key={product.id}
+                    onPress={onProductItemPress}
+                    className="flex h-32 xl:h-64 w-80 bg-neutral-800 rounded-xl shadow-lg p-8"
+                  >
+                    <View className="flex flex-1 flex-col space-y-4 justify-center">
+                      <Text className="text-white font-bold text-2xl">
+                        {product.productName}
+                      </Text>
+                      <Text className="text-white font-bold text-2xl">
+                        {CurrencyFormatter.format(product.productPrice)}
+                      </Text>
+                    </View>
+                  </Button>
+                );
+              })}
+              <Button
+                className="flex h-32 xl:h-64 w-80 bg-gray-100 border border-dashed rounded-xl shadow-lg items-center justify-center"
+                onPress={onAddProductButtonPress}
+              >
+                <Text className="text-gray-600 font-bold text-2xl">
+                  Agregar un producto
+                </Text>
+              </Button>
+            </View>
+          )}
+        </View>
       </PageContainer>
     </KeyboardAvoidingView>
   );

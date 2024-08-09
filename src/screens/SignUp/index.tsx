@@ -24,13 +24,13 @@ const SignUpScreen = () => {
 
   return (
     <PageContainer horizontal={false}>
-      <View className="flex h-1/3 gap-2 items-center justify-center">
-        <Text className="font-bold text-6xl">Te damos la bienvenida!</Text>
-        <Text className="font-normal text-2xl text-gray-500">
+      <View className="flex h-1/3 space-y-2 items-center justify-center">
+        <Text className="font-bold text-6xl text-center">Te damos la bienvenida!</Text>
+        <Text className="font-normal text-2xl text-gray-500 text-center">
           Completa los siguientes campos para crear tu cuenta
         </Text>
       </View>
-      <View className="flex h-2/3 gap-8 w-1/2 self-center">
+      <View className="flex h-2/3 space-y-8 w-full self-center">
         <TextInput
           className="w-full h-12 bg-neutral-200 rounded-lg p-4"
           placeholder="Correo electrónico"
@@ -43,7 +43,6 @@ const SignUpScreen = () => {
           placeholder="Contraseña"
           placeholderTextColor="gray"
           returnKeyType="done"
-          inputMode="numeric"
           onChangeText={onPasswordChange}
         />
         <Button

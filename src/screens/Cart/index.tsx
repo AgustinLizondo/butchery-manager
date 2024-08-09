@@ -61,7 +61,7 @@ const Cart = ({ navigation }: CartScreenProps) => {
       </Modal>
       <PageContainer className="flex flex-1" scrollEnabled horizontal={false}>
         <View className="flex flex-1 gap-4">
-          <View className="flex flex-row justify-between pb-4 border-b">
+          <View className="flex flex-row justify-between pb-4 border-b items-center">
             <View className="flex flex-row gap-4 items-center">
               <TouchableOpacity onPress={onBackPress}>
                 <Feather name="arrow-left" size={24} color="black" />
@@ -71,8 +71,8 @@ const Cart = ({ navigation }: CartScreenProps) => {
             <Text className="text-gray-600">{cart.length} productos</Text>
           </View>
           {cart.length === 0 ? (
-            <View className="flex flex-1 justify-center items-center">
-              <Text className="font-semibold text-xl text-gray-600">
+            <View className="flex flex-1 justify-center items-center max-w-sm self-center">
+              <Text className="font-semibold text-xl text-gray-600 text-center">
                 No tienes nada en el carrito, los productos que agregues se
                 mostrarán aquí.
               </Text>

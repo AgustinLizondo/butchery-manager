@@ -22,7 +22,7 @@ const PageContainer = (props: PageContainerProps) => {
       scrollEnabled={scrollEnabled}
     >
       <SafeAreaView
-        className={twMerge("flex flex-1 h-screen min-w-screen p-6", className)}
+        className={twMerge("flex flex-1 h-screen w-full p-6", className)}
         {...rest}
       >
         {children}

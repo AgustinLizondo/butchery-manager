@@ -27,13 +27,13 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 
   return (
     <PageContainer horizontal={false}>
-      <View className="flex h-1/3 gap-2 items-center justify-center">
-        <Text className="font-bold text-6xl">Hola de nuevo!</Text>
-        <Text className="font-normal text-2xl text-gray-500">
+      <View className="flex h-1/3 space-y-2 items-center justify-center">
+        <Text className="font-bold text-6xl text-center">Hola de nuevo!</Text>
+        <Text className="font-normal text-2xl text-gray-500 text-center">
           Inicia sesión con tu correo electrónico
         </Text>
       </View>
-      <View className="flex h-2/3 gap-8 w-1/2 self-center">
+      <View className="flex h-2/3 space-y-8 w-full self-center">
         <TextInput
           className="w-full h-12 bg-neutral-200 rounded-lg p-4"
           placeholder="Correo electrónico"
@@ -46,7 +46,6 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
           placeholder="Contraseña"
           placeholderTextColor="gray"
           returnKeyType="done"
-          inputMode="numeric"
           onChangeText={onPasswordChange}
         />
         <Button
