@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
   Modal,
-  Pressable,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 import PageContainer from "../../components/PageContainer";
-import Container from "../../components/Container";
 import { Product } from "../../utils/ProductsMock";
 import { CurrencyFormatter } from "../../utils/Formatters";
 import ProductsApi from "../../api/products/products";
@@ -35,7 +34,7 @@ const ProductsHomeScreen = ({ navigation }: ProductsHomeScreenProps) => {
   const [isProductModalVisible, setIsProductModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] =
     useState<ProductWithoutWeight>(emptyProduct);
-  const [weight, setWeight] = useState("0");
+  const [weight, setWeight] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
 
@@ -75,10 +74,10 @@ const ProductsHomeScreen = ({ navigation }: ProductsHomeScreenProps) => {
 
   const closeModalAndResetForm = () => {
     setSelectedProduct(emptyProduct);
-    setWeight("0");
+    setWeight("");
     setIsModalVisible(false);
   };
-  const onCancelButtonPress = () => closeModalAndResetForm();
+  const onCloseModalButtonPress = () => closeModalAndResetForm();
   const onCancelProductButtonPress = () => setIsProductModalVisible(false);
   const onAddButtonPress = () => {
     addToCart({
@@ -106,7 +105,13 @@ const ProductsHomeScreen = ({ navigation }: ProductsHomeScreenProps) => {
         visible={isModalVisible}
         presentationStyle="pageSheet"
       >
-        <View className="h-full p-8 justify-between">
+        <TouchableOpacity
+          className="self-end top-4 right-4 bg-gray-200 p-2 rounded-full"
+          onPress={onCloseModalButtonPress}
+        >
+          <Feather name="x" size={24} />
+        </TouchableOpacity>
+        <View className="flex flex-1 p-8 justify-between">
           <View className="space-y-4">
             <Text className="text-gray-600 font-semibold text-lg">
               Estás agregando
@@ -138,13 +143,7 @@ const ProductsHomeScreen = ({ navigation }: ProductsHomeScreenProps) => {
           </View>
           <View className="flex flex-row w-full space-x-4">
             <Button
-              className="flex-1 justify-center"
-              onPress={onCancelButtonPress}
-            >
-              Cancelar
-            </Button>
-            <Button
-              className="flex-1 justify-center"
+              className="flex-1 justify-center bg-blue-500"
               disabled={!weight}
               onPress={onAddButtonPress}
             >
@@ -212,28 +211,25 @@ const ProductsHomeScreen = ({ navigation }: ProductsHomeScreenProps) => {
       </Modal>
       <PageContainer scrollEnabled>
         <View className="flex flex-row pb-4 border-b items-center mb-4">
-          <Pressable onPress={onBackPress}>
+          <TouchableOpacity onPress={onBackPress}>
             <Feather name="arrow-left" size={24} color="black" />
-          </Pressable>
+          </TouchableOpacity>
           <Text className="font-bold text-xl ml-4">Productos</Text>
         </View>
         {products.length === 0 ? (
-          <View className="flex justify-center items-center h-full w-full">
+          <View className="flex flex-1 justify-center items-center">
             <Text className="font-semibold text-xl text-gray-600">
               No tienes productos para mostrar, los productos que crees se
               mostrarán aquí.
             </Text>
-            <Pressable
-              onPress={onAddProductButtonPress}
-              className="flex flex-row gap-2 items-center"
-            >
+            <TouchableOpacity onPress={onAddProductButtonPress}>
               <Text className="text-blue-500 font-semibold text-lg">
                 Agregar un producto
               </Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         ) : (
-          <View className="flex flex-wrap mt-0 mb-4 gap-4">
+          <View className="flex flex-1 flex-wrap gap-4">
             {products.map((product: ProductWithoutWeight) => {
               const onProductItemPress = () => {
                 setSelectedProduct(product);
@@ -241,28 +237,30 @@ const ProductsHomeScreen = ({ navigation }: ProductsHomeScreenProps) => {
               };
 
               return (
-                <Container
-                  onPress={onProductItemPress}
+                <Button
                   key={product.id}
-                  className="bg-neutral-800 rounded-xl p-12 shadow-lg w-1/3 h-1/4"
+                  onPress={onProductItemPress}
+                  className="flex h-64 w-80 bg-neutral-800 rounded-xl shadow-lg p-8"
                 >
-                  <Text className="text-white font-bold text-2xl">
-                    {product.productName}
-                  </Text>
-                  <Text className="text-white font-bold text-2xl">
-                    {CurrencyFormatter.format(product.productPrice)}
-                  </Text>
-                </Container>
+                  <View className="flex flex-1 flex-col space-y-4 justify-center">
+                    <Text className="text-white font-bold text-2xl">
+                      {product.productName}
+                    </Text>
+                    <Text className="text-white font-bold text-2xl">
+                      {CurrencyFormatter.format(product.productPrice)}
+                    </Text>
+                  </View>
+                </Button>
               );
             })}
-            <Container
-              className="bg-gray-100 border border-dashed rounded-xl p-12 shadow-lg"
+            <Button
+              className="flex h-64 w-80 bg-gray-100 border border-dashed rounded-xl shadow-lg items-center justify-center"
               onPress={onAddProductButtonPress}
             >
               <Text className="text-gray-600 font-bold text-2xl">
                 Agregar un producto
               </Text>
-            </Container>
+            </Button>
           </View>
         )}
       </PageContainer>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, Modal } from "react-native";
+import { View, Text, TouchableOpacity, Modal } from "react-native";
 import { useCart } from "../../contexts/CartContext";
 import { Product } from "../../utils/ProductsMock";
 import { CurrencyFormatter } from "../../utils/Formatters";
@@ -63,9 +63,9 @@ const Cart = ({ navigation }: CartScreenProps) => {
         <View className="flex flex-1 gap-4">
           <View className="flex flex-row justify-between pb-4 border-b">
             <View className="flex flex-row gap-4 items-center">
-              <Pressable onPress={onBackPress}>
+              <TouchableOpacity onPress={onBackPress}>
                 <Feather name="arrow-left" size={24} color="black" />
-              </Pressable>
+              </TouchableOpacity>
               <Text className="font-bold text-xl">Carrito</Text>
             </View>
             <Text className="text-gray-600">{cart.length} productos</Text>
@@ -76,14 +76,11 @@ const Cart = ({ navigation }: CartScreenProps) => {
                 No tienes nada en el carrito, los productos que agregues se
                 mostrarán aquí.
               </Text>
-              <Pressable
-                onPress={onAddProductsPress}
-                className="flex flex-row gap-2 items-center"
-              >
+              <TouchableOpacity onPress={onAddProductsPress}>
                 <Text className="text-blue-500 font-semibold text-lg">
                   Agregar productos
                 </Text>
-              </Pressable>
+              </TouchableOpacity>
             </View>
           ) : (
             <>

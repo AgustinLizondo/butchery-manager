@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Pressable, Modal, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, Modal, ScrollView } from "react-native";
 import { CurrencyFormatter } from "../../utils/Formatters";
 import Button from "../../components/Button";
 import PageContainer from "../../components/PageContainer";
@@ -76,9 +76,9 @@ const Orders = ({ navigation }: OrdersScreenProps) => {
         <View className="flex flex-1 gap-4">
           <View className="flex flex-row justify-between pb-4 border-b">
             <View className="flex flex-row gap-4 items-center">
-              <Pressable onPress={onBackPress}>
+              <TouchableOpacity onPress={onBackPress}>
                 <Feather name="arrow-left" size={24} color="black" />
-              </Pressable>
+              </TouchableOpacity>
               <Text className="font-bold text-xl">Órdenes</Text>
             </View>
             <Text className="text-gray-600">
@@ -91,14 +91,11 @@ const Orders = ({ navigation }: OrdersScreenProps) => {
                 No tienes órdenes para mostrar, las órdenes que crees se
                 mostrarán aquí.
               </Text>
-              <Pressable
-                onPress={onBackPress}
-                className="flex flex-row gap-2 items-center"
-              >
+              <TouchableOpacity onPress={onBackPress}>
                 <Text className="text-blue-500 font-semibold text-lg">
                   Volver al inicio.
                 </Text>
-              </Pressable>
+              </TouchableOpacity>
             </View>
           ) : (
             orders.map((order: Order) => (
@@ -131,7 +128,7 @@ const Orders = ({ navigation }: OrdersScreenProps) => {
                         )
                       )}
                     </Text>
-                    <Pressable
+                    <TouchableOpacity
                       onPress={() => {
                         setSelectedOrder(order);
                         onDeleteOrder();
@@ -139,7 +136,7 @@ const Orders = ({ navigation }: OrdersScreenProps) => {
                       className="w-12 h-12 active:opacity-50 rounded-full bg-gray-300 items-center justify-center"
                     >
                       <Feather name="trash-2" size={24} color="red" />
-                    </Pressable>
+                    </TouchableOpacity>
                   </View>
                 </View>
               </View>
