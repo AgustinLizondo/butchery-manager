@@ -3,24 +3,21 @@ import PageContainer from "../../components/PageContainer";
 import { Text, TextInput, View } from "react-native";
 import Button from "../../components/Button";
 import { supabase } from "../../utils/supabase";
-import { SignInScreenProps } from "./types";
 
-const SignInScreen = ({ navigation }: SignInScreenProps) => {
+const SignUpScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const isValid = email && password;
 
-  const onSignInButtonPress = async () => {
+  const onSignUpButtonPress = async () => {
     if (!isValid) return;
 
-    await supabase.auth.signInWithPassword({
+    await supabase.auth.signUp({
       email,
       password,
     });
   };
-
-  const onSignUpPress = async () => navigation.navigate("SignUp");
 
   const onEmailChange = (text: string) => setEmail(text);
   const onPasswordChange = (text: string) => setPassword(text);
@@ -28,9 +25,9 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
   return (
     <PageContainer horizontal={false}>
       <View className="flex h-1/3 gap-2 items-center justify-center">
-        <Text className="font-bold text-6xl">Hola de nuevo!</Text>
+        <Text className="font-bold text-6xl">Te damos la bienvenida!</Text>
         <Text className="font-normal text-2xl text-gray-500">
-          Inicia sesión con tu correo electrónico
+          Completa los siguientes campos para crear tu cuenta
         </Text>
       </View>
       <View className="flex h-2/3 gap-8 w-1/2 self-center">
@@ -52,21 +49,13 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
         <Button
           className="w-full"
           disabled={!isValid}
-          onPress={onSignInButtonPress}
+          onPress={onSignUpButtonPress}
         >
-          Iniciar sesión
-        </Button>
-        <Button
-          onPress={onSignUpPress}
-          className="bg-transparent p-0"
-          textClassName="text-black"
-        >
-          <Text>¿No tienes una cuenta? </Text>
-          Crear una
+          Crear cuenta
         </Button>
       </View>
     </PageContainer>
   );
 };
 
-export default SignInScreen;
+export default SignUpScreen;

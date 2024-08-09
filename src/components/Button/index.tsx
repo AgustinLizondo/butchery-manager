@@ -9,10 +9,11 @@ const Button = (props: ButtonProps) => {
   return (
     <TouchableOpacity
       className={twMerge(
-        "bg-neutral-900 rounded-lg p-3 hover:shadow-lg",
+        "bg-neutral-900 rounded-lg p-3",
         disabled && "opacity-50",
         className
       )}
+      disabled={disabled}
       {...rest}
     >
       <Text
