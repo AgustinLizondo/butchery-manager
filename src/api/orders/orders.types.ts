@@ -4,7 +4,7 @@ import { ICallbacksApi } from "../types";
 export interface IGetOrdersParams extends ICallbacksApi {}
 
 export interface ICreateOrderParams extends ICallbacksApi {
-  order: Omit<Order, "id">;
+  order: Pick<Order, "products">;
 }
 
 export interface IDeleteOrderParams extends ICallbacksApi {

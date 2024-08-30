@@ -1,5 +1,9 @@
 import { supabase } from "../../utils/supabase";
-import { ICreateOrderParams, IDeleteOrderParams, IGetOrdersParams } from "./orders.types";
+import {
+  ICreateOrderParams,
+  IDeleteOrderParams,
+  IGetOrdersParams,
+} from "./orders.types";
 
 const getOrders = async (params: IGetOrdersParams = {}) => {
   const { successCallback = () => null, errorCallback = () => null } = params;
@@ -35,12 +39,12 @@ const deleteOrder = async (params: IDeleteOrderParams) => {
   } = params;
 
   try {
-    const response = await supabase.from("orders").delete().match({ id: orderId });
+    const response = await supabase.from("orders").delete().eq("id", orderId);
     successCallback(response.data);
   } catch (error) {
     errorCallback(error);
   }
-}
+};
 
 const OrdersApi = {
   getOrders,

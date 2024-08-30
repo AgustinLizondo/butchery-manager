@@ -3,4 +3,5 @@ export type LoggedStackParamList = {
   ProductsHome: undefined;
   Cart: undefined;
   Orders: undefined;
+  Statistics: undefined;
 };

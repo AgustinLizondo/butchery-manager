@@ -3,6 +3,8 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { Product } from "../utils/ProductsMock";
 
 export type Order = {
+  createdAt: string;
+  createdBy: string;
   id: number;
   products: Product[];
 };
