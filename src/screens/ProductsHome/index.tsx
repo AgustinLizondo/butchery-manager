@@ -219,7 +219,7 @@ const ProductsHomeScreen = ({ navigation }: ProductsHomeScreenProps) => {
           </View>
           {products.length === 0 ? (
             <View className="flex flex-1 justify-center items-center max-w-sm self-center">
-              <Text className="font-semibold text-xl text-center text-gray-600">
+              <Text className="font-semibold text-xl text-center text-neutral-900">
                 No tienes productos para mostrar, los productos que crees se
                 mostrarán aquí.
               </Text>
@@ -241,13 +241,13 @@ const ProductsHomeScreen = ({ navigation }: ProductsHomeScreenProps) => {
                   <Button
                     key={product.id}
                     onPress={onProductItemPress}
-                    className="flex h-32 xl:h-64 w-80 bg-neutral-800 rounded-xl shadow-lg p-8"
+                    className="flex h-32 bg-neutral-100 rounded-xl shadow-sm p-8"
                   >
                     <View className="flex flex-1 flex-col space-y-4 justify-center">
-                      <Text className="text-white font-bold text-2xl">
+                      <Text className="text-neutral-900 font-bold text-4xl">
                         {product.productName}
                       </Text>
-                      <Text className="text-white font-bold text-2xl">
+                      <Text className="text-neutral-600 font-semibold text-2xl">
                         {CurrencyFormatter.format(product.productPrice)}
                       </Text>
                     </View>
@@ -255,7 +255,7 @@ const ProductsHomeScreen = ({ navigation }: ProductsHomeScreenProps) => {
                 );
               })}
               <Button
-                className="flex h-32 xl:h-64 w-80 bg-gray-100 border border-dashed rounded-xl shadow-lg items-center justify-center"
+                className="flex h-32 w-80 bg-neutral-100 border border-dashed rounded-xl shadow-lg items-center justify-center"
                 onPress={onAddProductButtonPress}
               >
                 <Text className="text-gray-600 font-bold text-2xl">
