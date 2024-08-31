@@ -8,6 +8,7 @@ import { SignInScreenProps } from "./types";
 const SignInScreen = ({ navigation }: SignInScreenProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const isValid = email && password;
 
@@ -24,6 +25,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 
   const onEmailChange = (text: string) => setEmail(text);
   const onPasswordChange = (text: string) => setPassword(text);
+  const toggleSecureTextEntry = () => setSecureTextEntry(!secureTextEntry);
 
   return (
     <PageContainer horizontal={false}>
@@ -41,13 +43,24 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
           returnKeyType="done"
           onChangeText={onEmailChange}
         />
-        <TextInput
-          className="w-full h-12 bg-neutral-200 rounded-lg p-4"
-          placeholder="Contraseña"
-          placeholderTextColor="gray"
-          returnKeyType="done"
-          onChangeText={onPasswordChange}
-        />
+        <View className="flex flex-col space-y-2">
+          <TextInput
+            secureTextEntry={secureTextEntry}
+            className="w-full h-12 bg-neutral-200 rounded-lg p-4"
+            placeholder="Contraseña"
+            placeholderTextColor="gray"
+            returnKeyType="done"
+            onChangeText={onPasswordChange}
+          />
+          <Button
+            className="bg-neutral-200 rounded-lg p-2 self-start"
+            onPress={toggleSecureTextEntry}
+          >
+            <Text className="text-neutral-900 text-sm">
+              {secureTextEntry ? "Mostrar contraseña" : "Ocultar contraseña"}
+            </Text>
+          </Button>
+        </View>
         <Button
           className="w-full"
           disabled={!isValid}
